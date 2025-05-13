@@ -40,13 +40,13 @@ const Home = () => {
           <h2>Work Done</h2>
           <div>
             <div>
-              <img src="assets/Pet photography.jpg" alt="pets" />
+              <img src="src\assets\Images\Pet photography.jpg" alt="pets" />
               <div>
                 <h3>Pet Photography</h3>
               </div>
             </div>
             <div>
-              <img src="assets/Wedding.jpg" alt="wedding" />
+              <img src="src\assets\Images\Wedding.jpg" alt="wedding" />
               <div>
                 <h3>Wedding</h3>
               </div>
