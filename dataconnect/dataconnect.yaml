@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "capstone-project-react"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "capstone-project-react-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]
