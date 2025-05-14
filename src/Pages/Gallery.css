@@ -1,0 +1,97 @@
+/* General styles */
+main {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  color: #222;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+/* Header section */
+main header {
+  background-color: #f4f4f4;
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+main header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+main header p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  color: #555;
+}
+
+main header a {
+  background-color: #000;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+main header a:hover {
+  background-color: #333;
+}
+
+/* Photographer sections */
+section > div {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+section p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 700px;
+  color: #444;
+}
+
+/* Image gallery */
+section div div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+section img {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+section img:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section div div {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  section img {
+    max-width: 90%;
+    height: auto;
+  }
+}

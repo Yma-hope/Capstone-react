@@ -1,8 +1,9 @@
 import React from 'react';
+import './About.css'
 
 const AboutPage = () => {
   return (
-    <div>
+    <div className="about-page">
       {/* Main Content */}
       <main>
         <section>

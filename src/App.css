@@ -1,10 +1,10 @@
 /* App.css — main styles for Lark & Lens */
 
 :root {
-  --primary-color: #111827;
+  --primary-color: #1c1c1c;
   --accent-color: #fbbf24;
   --text-color: #ffffff;
-  --background-color: #1f2937;
+  --background-color: #272829;
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 

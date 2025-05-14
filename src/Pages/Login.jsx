@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Login.css';
 //import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -39,23 +40,28 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login to Lark & Lens</h2>
+    <div className="login-wrapper">
+      <h2 className="login-title">Login to Lark & Lens</h2>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <label htmlFor="email">Email:</label>
+      <form onSubmit={handleSubmit} noValidate className="login-form">
+        <label htmlFor="email" className="login-label">Email:</label>
         <input
           type="email"
-          id="emailInput"
+          id="email"
+          className="login-input"
+          placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         {emailError && <p>{emailError}</p>}
 
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password" className="login-label">Password:</label>
         <input
           type="password"
-          id="passwordInput"
+          id="password"
+          className="login-input"
+          placeholder="......"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -63,7 +69,7 @@ const Login = () => {
 
         {successMessage && <p>{successMessage}</p>}
 
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">Login</button>
 
         <p>
           Don't have an account?{" "}

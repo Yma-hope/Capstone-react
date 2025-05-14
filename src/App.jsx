@@ -6,6 +6,9 @@ import Photographers from'./Pages/Photographers'
 import About from './Pages/About'
 import Gallery from './Pages/Gallery'
 import Reviews from './Pages/Reviews'
+import Navbar from './Components/Navbar'
+import Footer from './Components/Footer'
+
 //import { store } from './Store'
 //import { Provider } from 'react-redux'
 
@@ -13,14 +16,7 @@ function App() {
 
   return (
     <Router>
-      <nav className='navbar'>
-        <NavLink className="nav-link" to="/home">Home</NavLink>
-        <NavLink className="nav-link" to="/about">About</NavLink>
-        <NavLink className="nav-link" to="/photographers">Photographers</NavLink>
-        <NavLink className="nav-link" to="/gallery">Gallery</NavLink>
-        <NavLink className="nav-link" to="/reviews">Reviews</NavLink>
-        <NavLink className="nav-link" to="/login">Log In</NavLink>
-      </nav>
+      <Navbar/>
       <Routes>
         <Route path='/home' element={<Home/>} />
         <Route path='/about' element={<About />} />
@@ -29,6 +25,7 @@ function App() {
         <Route path='/reviews' element={<Reviews/>} />
         <Route path='/login' element={<Login />} />
       </Routes>
+      <Footer/>
     </Router>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './Home.css'
 
 const Home = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const Home = () => {
   return (
     <>
       <header>
+        {/* <img src="src\assets\Images\Camera.jpg" alt="Camera" /> */}
         <div>
           <h1>Welcome to Lark & Lens!</h1>
           <p>
@@ -52,7 +54,7 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <img src="assets/Portrait.jpg" alt="portrait" />
+              <img src="src\assets\Images\Portrait.jpg" alt="portrait" />
               <div>
                 <h3>Portraits</h3>
               </div>
@@ -61,46 +63,46 @@ const Home = () => {
         </section>
       </main>
 
-      <section>
+      <section className="testimonials">
         <h2>What Our Clients Say</h2>
-        <div>
-          <div>
+        <div className="testimonial-cards">
+          <div className="testimonial-card">
             <p>
               "Absolutely amazing! The team at Lark & Lens captured every detail of
               our wedding perfectly."
             </p>
-            <div>
+            <div className="stars">
               ★★★★☆
             </div>
-            <div>
+            <div className="client-info">
               <p>— Sarah & James</p>
               <p>Wedding, Nairobi</p>
             </div>
           </div>
 
-          <div>
+          <div className="testimonial-card">
             <p>
               "Very professional, punctual, and creative. My fashion shoot came out
               looking like a Vogue spread."
             </p>
-            <div>
+            <div className="stars"> 
               ★★★★★
             </div>
-            <div>
+            <div className="client-info">
               <p>— Amina M.</p>
               <p>Fashion, Mombasa</p>
             </div>
           </div>
 
-          <div>
+          <div className="testimonial-card">
             <p>
               "As a pet lover, I was blown away by how they handled my dog—super
               gentle, and the photos are stunning!"
             </p>
-            <div>
+            <div className="stars">
               ★★★½☆
             </div>
-            <div>
+            <div className="client-info">
               <p>— Kevin O.</p>
               <p>Pet Photography, Nairobi</p>
             </div>

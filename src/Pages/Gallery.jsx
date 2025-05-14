@@ -1,11 +1,12 @@
 import React from 'react';
+import './Gallery.css';
 
 const photographers = [
   {
     name: 'Liam Hart – Aerial Photography',
     description:
       'Specializing in breathtaking aerial imagery, Liam captures the world from bold new perspectives.',
-    images: ['Aerial 1.jpg', 'Aerial 2.jpg', 'Aerial 3.jpg'],
+    images: ['src/assets/Aerial 1.jpg', 'src/assets/Aerial 2.jpg', 'src/assets/Aerial 3.jpg'],
   },
   {
     name: 'Adelaide Mireya – Nature & Wildlife',
