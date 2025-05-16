@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Reviews.css';
 
 const Reviews = () => {
   const [selectedRating, setSelectedRating] = useState(0);
@@ -34,7 +35,7 @@ const Reviews = () => {
   };
 
   return (
-    <div>
+    <div className='reviews-container'>
       <header>
         <h1>Client Reviews!</h1>
         <p>
@@ -45,18 +46,18 @@ const Reviews = () => {
 
       <section>
         {reviewData.map((review, index) => (
-          <div key={index}>
+          <div className="review-card"  key={index}>
             <p><i>{review.text}</i></p>
             <p><strong>— {review.author}</strong></p>
             <p>{review.category}</p>
-            <div>
+            <div className='review-stars'>
               {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
             </div>
           </div>
         ))}
       </section>
 
-      <section>
+      <section className='review-form'>
         <h2>Leave a Review</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="review-text">Your Review</label>
@@ -69,7 +70,7 @@ const Reviews = () => {
           ></textarea>
 
           <label>Your Rating</label>
-          <div>
+          <div className='star-rating'>
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}

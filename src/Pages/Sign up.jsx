@@ -1,82 +1,135 @@
-import React, { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const Signup = () => {
-  //const navigate = useNavigate();
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
+  const [errors, setErrors] = useState({});
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
 
-  const handleSubmit = (e) => {
+  const validate = () => {
+    const newErrors = {};
+    if (formData.name.trim() === '') newErrors.name = 'Name is required.';
+    if (!formData.email.includes('@')) newErrors.email = 'Enter a valid email address.';
+    if (formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters.';
+    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match.';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setEmailError("");
-    setPasswordError("");
-    setSuccessMessage("");
-
-    let valid = true;
-
-    if (!email || !email.includes("@")) {
-      setEmailError("Please enter a valid email address.");
-      valid = false;
-    }
-
-    if (!password || password.length < 6) {
-      setPasswordError("Password must be at least 6 characters.");
-      valid = false;
-    }
-
-    if (valid) {
-      // Store credentials locally for demo purposes only (not secure for production!)
-      const newUser = {
-        email,
-        password,
-      };
-
-      localStorage.setItem("registeredUser", JSON.stringify(newUser));
-      setSuccessMessage("Signup successful! Redirecting...");
-
-      //setTimeout(() => {
-      //  navigate("/login");
-      //}, 1500);
+    if (validate()) {
+      try {
+        await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+        alert('Signup successful!');
+        window.location.href = '/login'; // Update path if needed
+      } catch  {
+        setErrors({ email: "Email already in use or invalid." });
+      }
     }
   };
 
   return (
-    <div>
-      <h2>Create Your Lark & Lens Account</h2>
+    <div style={{
+      backgroundImage: 'url(assets/Camera.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div style={{
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        padding: '2rem',
+        borderRadius: '1rem',
+        width: '100%',
+        maxWidth: '500px',
+        boxShadow: '0 0 10px rgba(0,0,0,0.1)'
+      }}>
+        <h2 style={{ textAlign: 'center', textTransform: 'uppercase', textDecoration: 'underline' }}>
+          Sign Up for Lark & Lens
+        </h2>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="EmailInput"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {emailError && <p>{emailError}</p>}
+        <form onSubmit={handleSubmit} noValidate style={{ marginTop: '2rem' }}>
+          <div>
+            <label htmlFor="name">Name:</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              style={{ width: '100%', padding: '0.5rem', marginBottom: '0.25rem' }}
+              required
+            />
+            {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
+          </div>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="PasswordInput"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {passwordError && <p>{passwordError}</p>}
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              style={{ width: '100%', padding: '0.5rem', marginBottom: '0.25rem' }}
+              required
+            />
+            {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+          </div>
 
-        {successMessage && <p>{successMessage}</p>}
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              style={{ width: '100%', padding: '0.5rem', marginBottom: '0.25rem' }}
+              required
+            />
+            {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
+          </div>
 
-        <button type="submit">Sign Up</button>
+          <div>
+            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              style={{ width: '100%', padding: '0.5rem', marginBottom: '0.25rem' }}
+              required
+            />
+            {errors.confirmPassword && <p style={{ color: 'red' }}>{errors.confirmPassword}</p>}
+          </div>
 
-        <p>
-          Already have an account?{" "}
-          <a href="/login">Login here</a>
-        </p>
-      </form>
+          <button type="submit" style={{
+            width: '100%',
+            padding: '0.75rem',
+            backgroundColor: '#000',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '0.5rem',
+            marginTop: '1rem',
+            cursor: 'pointer'
+          }}>
+            Sign Up
+          </button>
+
+          <p style={{ textAlign: 'center', marginTop: '1rem' }}>
+            Already have an account? <a href="login.html" style={{ textDecoration: 'underline', color: '#333' }}>Login</a>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

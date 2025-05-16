@@ -4,6 +4,20 @@ import './About.css'
 const AboutPage = () => {
   return (
     <div className="about-page">
+
+      <header className='about-header'>
+        {/* <img src="src\assets\Camera.jpg" alt="Camera" /> */}
+        <div className='about-text'>
+          <h1>About Lark & Lens!</h1>
+
+            <p>
+              Lark & Lens is a photography collective passionate about capturing authentic, meaningful moments. 
+              Blending artistic vision with real emotion, we create timeless images that tell your story — 
+              naturally and beautifully.
+              </p>
+        </div>
+      </header>
+      
       {/* Main Content */}
       <main>
         <section>
@@ -30,13 +44,13 @@ const AboutPage = () => {
           <h3>Meet the Founders</h3>
           <div>
             <div>
-              <img src="/images/founder1.jpg" alt="Founder 1" />
-              <h4>Avery Lark</h4>
+              <img src="src\assets\Lilo.Portrait.jpg" alt="Founder 1" />
+              <h4>Lilian Mwangi</h4>
               <p>Visual Storyteller</p>
             </div>
             <div>
-              <img src="/images/founder2.jpg" alt="Founder 2" />
-              <h4>Riley Lens</h4>
+              <img src="src\assets\Snapchat-1163590807.jpg" alt="Founder 2" />
+              <h4>Yma Hope</h4>
               <p>Creative Director</p>
             </div>
           </div>

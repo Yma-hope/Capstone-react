@@ -23,6 +23,7 @@ const Footer = () => {
           <a href="/about">About</a>
           <a href="/photographers">Photographers</a>
           <a href="/gallery">Gallery</a>
+          <a href="/contacts">Contacts</a>
           <a href="/reviews">Reviews</a>
         </div>
 

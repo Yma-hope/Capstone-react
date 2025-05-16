@@ -1,41 +1,44 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig"; // Adjust this path as needed
 import './Login.css';
-//import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  //const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let valid = true;
     setEmailError("");
     setPasswordError("");
     setSuccessMessage("");
 
     if (!email || !email.includes("@")) {
       setEmailError("Please enter a valid email address.");
-      valid = false;
+      return;
     }
-
     if (!password.trim()) {
       setPasswordError("Password is required.");
-      valid = false;
+      return;
     }
 
-    if (valid) {
-      localStorage.setItem("loggedInUser", email);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       setSuccessMessage("Login successful! Redirecting...");
+      localStorage.setItem("loggedInUser", email);
 
-      //setTimeout(() => {
-      //  navigate("/"); // redirect to homepage or index route
-      //}, 1500);
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000);
+    } catch {
+      setPasswordError("Invalid credentials. Please try again.");
     }
   };
 

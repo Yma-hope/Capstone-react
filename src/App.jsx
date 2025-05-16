@@ -1,33 +1,66 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'
-import Login from './Pages/Login'
-import Photographers from'./Pages/Photographers'
 import About from './Pages/About'
 import Gallery from './Pages/Gallery'
+import Photographers from'./Pages/Photographers'
+import Contacts from './Pages/Contacts'
 import Reviews from './Pages/Reviews'
+import Login from './Pages/Login'
+import Signup from './Pages/Sign up'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
+import ProtectedRoute from './Components/ProtectedRoute'
 
-//import { store } from './Store'
-//import { Provider } from 'react-redux'
 
 function App() {
 
   return (
-    <Router>
-      <Navbar/>
-      <Routes>
-        <Route path='/home' element={<Home/>} />
-        <Route path='/about' element={<About />} />
-        <Route path='/photographers' element={<Photographers />} />
-        <Route path='/gallery' element={<Gallery />} />
-        <Route path='/reviews' element={<Reviews/>} />
-        <Route path='/login' element={<Login />} />
-      </Routes>
-      <Footer/>
-    </Router>
-  )
+    <>
+        <Navbar />
+        <Routes>
+          <Route path='/home' element={<Home />} />
+          <Route path='/contacts' element={<Contacts />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+
+          {/* Protected routes */}
+          <Route
+            path='/about'
+            element={
+              <ProtectedRoute>
+                <About />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/photographers'
+            element={
+              <ProtectedRoute>
+                <Photographers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/gallery'
+            element={
+              <ProtectedRoute>
+                <Gallery />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/reviews'
+            element={
+              <ProtectedRoute>
+                <Reviews />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+        <Footer />
+        </>
+  );
 }
 
-export default App
+export default App;
